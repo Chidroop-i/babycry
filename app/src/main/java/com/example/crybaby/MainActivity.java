@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
@@ -29,7 +30,7 @@ import android.support.v4.content.ContextCompat;
 public class MainActivity extends AppCompatActivity {
 
     Button buttonStart, buttonStop, buttonPlayLastRecordAudio,
-            buttonStopPlayingRecording, getList, wave ;
+            buttonStopPlayingRecording, getList, wave , listSong;
     TextView setSong;
     String AudioSavePathInDevice = null;
     MediaRecorder mediaRecorder ;
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         getList = (Button) findViewById(R.id.button5);
         setSong = (TextView) findViewById(R.id.textView);
         wave = (Button)findViewById(R.id.button6);
-
+        listSong = (Button)findViewById(R.id.button7);
 
         buttonStop.setEnabled(false);
         buttonPlayLastRecordAudio.setEnabled(false);
@@ -166,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
 
         //navigate to sinewave file
         final Intent intent = new Intent(this,sineWave.class);
+       final  Intent intent2 = new Intent(this,listSongs.class);
         wave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,6 +175,19 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 }
         );
+        listSong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String fileDirectory = Environment.getExternalStorageDirectory().getAbsolutePath();
+                File folder = new File(fileDirectory);
+                File[] listOfFiles = folder.listFiles();
+                ArrayList<String> arrayList = new ArrayList<>();
+                for(int i=0;i<listOfFiles.length;i++)
+                    arrayList.add(listOfFiles[i].toString());
+                intent2.putExtra("songList",arrayList);
+                startActivity(intent2);
+            }
+        });
 
     }
 
