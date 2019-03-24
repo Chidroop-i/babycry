@@ -17,7 +17,7 @@ public class listSongs extends AppCompatActivity {
         songList = getIntent().getStringArrayListExtra("songList");
 
         ArrayAdapter<String> itemsAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, songList);
+                new ArrayAdapter<String>(this, R.layout.act, songList);
         ListView listView = (ListView) findViewById(R.id.lvItems);
         listView.setAdapter(itemsAdapter);
 

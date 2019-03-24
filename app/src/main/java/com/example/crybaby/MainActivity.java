@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
 
                 for (int i = 0; i < listOfFiles.length; i++) {
                     if (listOfFiles[i].isFile()) {
-                        set = set + listOfFiles[i].getName()+ "\n"+ "  " + listOfFiles.length;
+                        set = set + listOfFiles[i].getName();
                     } else if (listOfFiles[i].isDirectory()) {
                         set = set + "Directory " + listOfFiles[i].getName() + "\n";
                     }
@@ -183,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
                 File[] listOfFiles = folder.listFiles();
                 ArrayList<String> arrayList = new ArrayList<>();
                 for(int i=0;i<listOfFiles.length;i++)
+                    if(listOfFiles[i].isFile())
                     arrayList.add(listOfFiles[i].toString());
                 intent2.putExtra("songList",arrayList);
                 startActivity(intent2);
