@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import android.widget.Button;
@@ -119,13 +120,14 @@ public class MainActivity extends AppCompatActivity {
 
                 mediaPlayer = new MediaPlayer();
                 try {
+                    Log.i("hehe",AudioSavePathInDevice);
                     mediaPlayer.setDataSource(AudioSavePathInDevice);
                     mediaPlayer.prepare();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
-                mediaPlayer.start();
+               onPrepared(mediaPlayer);
                 Toast.makeText(MainActivity.this, "Recording Playing",
                         Toast.LENGTH_LONG).show();
             }
@@ -146,10 +148,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        final Intent intent3 = new Intent(this,heightWeight.class);
         getList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String fileDirectory = Environment.getExternalStorageDirectory().getAbsolutePath();
+              /*  String fileDirectory = Environment.getExternalStorageDirectory().getAbsolutePath();
                 File folder = new File(fileDirectory);
                 File[] listOfFiles = folder.listFiles();
                 String set = "";
@@ -161,7 +164,9 @@ public class MainActivity extends AppCompatActivity {
                         set = set + "Directory " + listOfFiles[i].getName() + "\n";
                     }
                 }
-                setSong.setText(set);
+                setSong.setText(set);*/
+              startActivity(intent3);
+
             }
         });
 
@@ -190,6 +195,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void onPrepared(MediaPlayer player) {
+        player.start();
     }
 
     public void MediaRecorderReady(){
