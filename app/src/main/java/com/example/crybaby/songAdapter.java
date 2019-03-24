@@ -1,6 +1,7 @@
 package com.example.crybaby;
 
 import android.app.Activity;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class songAdapter extends ArrayAdapter<String> {
+
+    MediaPlayer mediaPlayer;
     public songAdapter(Activity context, ArrayList<String> songList) {
         // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
         // the second argument is used when the ArrayAdapter is populating a single TextView.
@@ -34,6 +37,7 @@ public class songAdapter extends ArrayAdapter<String> {
         // Get the version name from the current AndroidFlavor object and
         // set this text on the name TextView
         nameTextView.setText(currentSong);
+
 
 
         return listItemView;
