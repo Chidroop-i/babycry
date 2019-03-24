@@ -16,10 +16,10 @@ public class listSongs extends AppCompatActivity {
         ArrayList<String> songList = new ArrayList<>();
         songList = getIntent().getStringArrayListExtra("songList");
 
-        ArrayAdapter<String> itemsAdapter =
-                new ArrayAdapter<String>(this, R.layout.act, songList);
+        songAdapter itemsAdapter = new songAdapter(this, songList);
         ListView listView = (ListView) findViewById(R.id.lvItems);
         listView.setAdapter(itemsAdapter);
+
 
     }
 }
