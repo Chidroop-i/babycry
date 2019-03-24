@@ -23,6 +23,8 @@ public class heightWeight extends AppCompatActivity {
         w = (TextView) findViewById(R.id.weight);
         h = (TextView) findViewById(R.id.height);
         b1 = (Button) findViewById(R.id.button8);
+        w.setText("10");
+        h.setText("1.2");
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
